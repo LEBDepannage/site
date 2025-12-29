@@ -11,7 +11,17 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
+  // Optimisations pour Vercel
+  poweredByHeader: false,
+  compress: true,
+  reactStrictMode: true,
 }
 
 export default nextConfig
