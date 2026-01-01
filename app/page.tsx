@@ -9,12 +9,19 @@ import { CTASection } from "@/components/home/cta-section"
 import { Footer } from "@/components/footer"
 
 async function getHomePageData(): Promise<HomePageData> {
-  return await client.fetch(`*[_type == "homePage"][0]{
-    hero,
-    servicesPreview,
-    realisationsPreview,
-    testimonials
-  }`)
+  return await client.fetch(
+    `*[_type == "homePage"][0]{
+      hero,
+      servicesPreview,
+      realisationsPreview,
+      testimonials
+    }`,
+    {},
+    {
+      cache: 'no-store', // Force le fetch à chaque requête
+      // OU utilisez: next: { revalidate: 60 } pour revalider toutes les 60 secondes
+    }
+  )
 }
 
 export default async function HomePage() {
