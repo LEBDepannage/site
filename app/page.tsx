@@ -18,8 +18,7 @@ async function getHomePageData(): Promise<HomePageData> {
     }`,
     {},
     {
-      cache: 'no-store', // Force le fetch à chaque requête
-      // OU utilisez: next: { revalidate: 60 } pour revalider toutes les 60 secondes
+      next: { revalidate: 60 } // Revalide toutes les 60 secondes
     }
   )
 }
