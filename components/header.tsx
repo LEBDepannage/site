@@ -104,22 +104,28 @@ export function Header() {
 
       {/* Full Screen Mobile Navigation */}
       <div className={cn(
-        "fixed inset-0 z-[55] md:hidden transition-all duration-500 ease-in-out",
-        isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        "fixed inset-0 z-[55] md:hidden transition-transform duration-300 ease-in-out",
+        isMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
         {/* Backdrop with gradient */}
         <div
-          className={cn(
-            "absolute inset-0 bg-gradient-to-br from-primary/95 via-primary to-primary/90 backdrop-blur-md transition-all duration-500",
-            isMenuOpen ? "scale-100" : "scale-95"
-          )}
+          className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary to-primary/90 backdrop-blur-md"
           onClick={() => setIsMenuOpen(false)}
         />
 
+        {/* Close Button */}
+        <button
+          className="absolute top-6 right-6 z-[60] p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300"
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="Fermer le menu"
+        >
+          <X className="h-6 w-6 text-white" />
+        </button>
+
         {/* Menu Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 py-24 overflow-y-auto">
+        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-8 overflow-hidden">
           {/* Navigation Links */}
-          <nav className="flex flex-col gap-1 mt-8">
+          <nav className="flex flex-col gap-1">
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}

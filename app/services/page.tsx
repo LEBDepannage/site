@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 
 const services = [
   {
+    id: "plomberie",
     icon: Wrench,
     title: "Plomberie",
     description:
@@ -44,6 +45,7 @@ const services = [
     ],
   },
   {
+    id: "menuiserie",
     icon: Hammer,
     title: "Menuiserie",
     description:
@@ -58,6 +60,7 @@ const services = [
     ],
   },
   {
+    id: "carrelage",
     icon: Grid3X3,
     title: "Carrelage",
     description:
@@ -72,6 +75,7 @@ const services = [
     ],
   },
   {
+    id: "electricite",
     icon: Lightbulb,
     title: "Électricité",
     description:
@@ -86,6 +90,7 @@ const services = [
     ],
   },
   {
+    id: "peinture",
     icon: PaintBucket,
     title: "Peinture",
     description:
@@ -100,6 +105,7 @@ const services = [
     ],
   },
   {
+    id: "renovation",
     icon: Home,
     title: "Rénovation",
     description:
@@ -139,7 +145,8 @@ export default function ServicesPage() {
               {services.map((service) => (
                 <Card
                   key={service.title}
-                  className="group hover:shadow-lg transition-shadow duration-300 bg-card border-border"
+                  id={service.id}
+                  className="group hover:shadow-lg transition-shadow duration-300 bg-card border-border scroll-mt-24"
                 >
                   <CardHeader>
                     <div className="mb-4 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
