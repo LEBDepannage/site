@@ -9,6 +9,7 @@
     "start": "next start",
     "sanity:studio": "sanity dev",
     "sanity:upload-images": "tsx scripts/upload-images.ts",
+    "sanity:upload-realisations-media": "tsx scripts/upload-realisations-media.ts",
     "sanity:migrate-home": "tsx scripts/migrate-homepage.ts",
     "sanity:migrate-services": "tsx scripts/migrate-services.ts",
     "sanity:migrate-realisations": "tsx scripts/migrate-realisations.ts",

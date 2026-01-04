@@ -105,3 +105,34 @@ export interface ServicesPageData {
     }
   }
 }
+
+// Types pour la page Réalisations
+export interface RealisationData {
+  _key: string
+  title: string
+  category: string
+  location: string
+  mediaType: 'image' | 'video'
+  image?: SanityImageSource
+  video?: {
+    asset: {
+      _ref: string
+      _type: string
+    }
+  }
+}
+
+export interface RealisationsPageData {
+  hero: {
+    title: string
+    description: string
+  }
+  categories: string[]
+  realisations: RealisationData[]
+  cta: {
+    title: string
+    description: string
+    buttonText: string
+    buttonLink: string
+  }
+}
