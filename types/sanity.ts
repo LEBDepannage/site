@@ -73,3 +73,35 @@ export interface HomePageData {
   realisationsPreview: RealisationsPreviewData
   testimonials: TestimonialsData
 }
+
+// Types pour la page Services
+export interface ServiceData {
+  _key: string
+  id: {
+    current: string
+  }
+  icon: string
+  title: string
+  description: string
+  details: string[]
+}
+
+export interface ServicesPageData {
+  hero: {
+    title: string
+    description: string
+  }
+  services: ServiceData[]
+  cta: {
+    title: string
+    description: string
+    primaryButton: {
+      label: string
+      phone: string
+    }
+    secondaryButton: {
+      label: string
+      link: string
+    }
+  }
+}
