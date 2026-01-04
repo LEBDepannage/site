@@ -11,9 +11,24 @@ import { Footer } from "@/components/footer"
 async function getHomePageData(): Promise<HomePageData> {
   return await client.fetch(
     `*[_type == "homePage"][0]{
-      hero,
+      hero{
+        ...,
+        image{
+          ...,
+          asset->
+        }
+      },
       servicesPreview,
-      realisationsPreview,
+      realisationsPreview[]{
+        ...,
+        realisations[]{
+          ...,
+          image{
+            ...,
+            asset->
+          }
+        }
+      },
       testimonials
     }`,
     {},

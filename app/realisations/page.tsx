@@ -9,7 +9,17 @@ async function getRealisationsPageData(): Promise<RealisationsPageData> {
     `*[_type == "realisationsPage"][0]{
       hero,
       categories,
-      realisations,
+      realisations[]{
+        ...,
+        image{
+          ...,
+          asset->
+        },
+        video{
+          ...,
+          asset->
+        }
+      },
       cta
     }`,
     {},
