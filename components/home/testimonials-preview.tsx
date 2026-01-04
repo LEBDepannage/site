@@ -48,7 +48,7 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
             // Logos locaux pour les plateformes connues
             const localLogos: Record<string, string> = {
               'Google': '/google-logo.png',
-              'Travaux.com': '', // Pas de logo, utilise le badge vert
+              'Travaux.com': '/travaux-logo.png',
             }
 
             const logoSrc = localLogos[platform.name] || (platform.logo ? urlFor(platform.logo).url() : '')
