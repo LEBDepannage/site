@@ -45,18 +45,26 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
             const fullStars = Math.floor(platform.rating)
             const hasHalfStar = platform.rating % 1 >= 0.5
 
+            // Logos locaux pour les plateformes connues
+            const localLogos: Record<string, string> = {
+              'Google': '/google-logo.png',
+              'Travaux.com': '', // Pas de logo, utilise le badge vert
+            }
+
+            const logoSrc = localLogos[platform.name] || (platform.logo ? urlFor(platform.logo).url() : '')
+
             return (
               <a key={platform._key} href={platform.link} target="_blank" rel="noopener noreferrer">
                 <Card className="bg-white border-2 border-border hover:border-primary p-8 shadow-md hover:shadow-xl transition-all cursor-pointer">
                   <CardContent className="p-0 flex items-center gap-6">
-                    {platform.logo ? (
+                    {logoSrc ? (
                       <div className="w-20 h-20 relative shrink-0">
                         <Image
-                          src={urlFor(platform.logo).url()}
-                          alt={platform.logo.alt || platform.name}
+                          src={logoSrc}
+                          alt={`Logo ${platform.name}`}
                           fill
                           className="object-contain"
-                          unoptimized
+                          unoptimized={!logoSrc.startsWith('/')}
                         />
                       </div>
                     ) : (
@@ -65,7 +73,7 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
                       </div>
                     )}
                     <div>
-                      <p className="font-bold text-foreground text-xl mb-2">{platform.logo ? `Avis ${platform.name}` : platform.name}</p>
+                      <p className="font-bold text-foreground text-xl mb-2">{logoSrc ? `Avis ${platform.name}` : platform.name}</p>
                       <div className="flex items-center gap-3 mb-1">
                         <span className="text-4xl font-bold text-foreground">{platform.rating}</span>
                         <div className="flex">
