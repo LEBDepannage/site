@@ -1,8 +1,33 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { PortableText } from '@portabletext/react'
+import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { client } from "@/sanity/client"
 import type { LegalPageData } from "@/types/sanity"
+
+// Composants personnalisés pour le rendu Portable Text
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    h2: ({children}) => <h2 className="text-2xl font-bold text-foreground mb-6 mt-10 first:mt-0">{children}</h2>,
+    h3: ({children}) => <h3 className="text-xl font-bold text-foreground mb-4 mt-8">{children}</h3>,
+    normal: ({children}) => <p className="text-muted-foreground mb-4 leading-relaxed">{children}</p>,
+  },
+  marks: {
+    strong: ({children}) => <strong className="font-bold text-foreground">{children}</strong>,
+    em: ({children}) => <em className="italic">{children}</em>,
+    link: ({value, children}) => {
+      const href = value?.href || ''
+      return <a href={href} className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">{children}</a>
+    },
+  },
+  list: {
+    bullet: ({children}) => <ul className="list-disc pl-6 text-muted-foreground my-4 space-y-2">{children}</ul>,
+    number: ({children}) => <ol className="list-decimal pl-6 text-muted-foreground my-4 space-y-2">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({children}) => <li className="text-muted-foreground">{children}</li>,
+    number: ({children}) => <li className="text-muted-foreground">{children}</li>,
+  },
+}
 
 async function getMentionsLegalesData(): Promise<LegalPageData> {
   return await client.fetch(
@@ -46,8 +71,8 @@ export default async function MentionsLegalesPage() {
         <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">{data.title}</h1>
 
-          <div className="prose prose-slate max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h2:text-foreground prose-h2:mb-6 prose-h2:mt-10 prose-h2:first:mt-0 prose-p:text-muted-foreground prose-p:mb-4 prose-p:leading-relaxed prose-strong:text-foreground prose-a:text-primary prose-a:hover:underline prose-ul:list-disc prose-ul:pl-6 prose-ul:text-muted-foreground prose-ul:my-4 prose-li:text-muted-foreground prose-li:my-1">
-            <PortableText value={data.content} />
+          <div className="max-w-none">
+            <PortableText value={data.content} components={portableTextComponents} />
           </div>
         </div>
       </main>
