@@ -143,9 +143,22 @@ export interface ContactPageData {
     title: string
     description: string
   }
-  contactCard: {
-    title: string
-    description: string
+  contactInfo: {
+    cardTitle: string
+    cardDescription: string
+    phoneArtisan: string
+    phoneSecretariat: string
+    email: string
+    address: {
+      street: string
+      city: string
+      googleMapsUrl: string
+    }
+    availability: {
+      hours: string
+      coverage: string
+    }
+    mapEmbedUrl: string
   }
 }
 

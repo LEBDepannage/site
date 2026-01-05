@@ -39,24 +39,92 @@ export const contactPage = defineType({
       ],
     }),
 
-    // Carte Coordonnées
+    // Coordonnées complètes
     defineField({
-      name: 'contactCard',
-      title: 'Carte "Nos Coordonnées"',
+      name: 'contactInfo',
+      title: 'Informations de contact',
       type: 'object',
-      description: 'Les textes de la carte (les coordonnées elles-mêmes restent en dur dans le code)',
       fields: [
         defineField({
-          name: 'title',
-          title: 'Titre',
+          name: 'cardTitle',
+          title: 'Titre de la carte',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
         defineField({
-          name: 'description',
-          title: 'Description',
+          name: 'cardDescription',
+          title: 'Description de la carte',
           type: 'text',
           rows: 2,
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'phoneArtisan',
+          title: 'Téléphone Artisan',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'phoneSecretariat',
+          title: 'Téléphone Secrétariat',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'email',
+          title: 'Email',
+          type: 'string',
+          validation: (Rule) => Rule.required().email(),
+        }),
+        defineField({
+          name: 'address',
+          title: 'Adresse',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'street',
+              title: 'Rue',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'city',
+              title: 'Ville',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'googleMapsUrl',
+              title: 'URL Google Maps',
+              type: 'url',
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+        }),
+        defineField({
+          name: 'availability',
+          title: 'Disponibilité',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'hours',
+              title: 'Horaires',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'coverage',
+              title: 'Zone de couverture',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+        }),
+        defineField({
+          name: 'mapEmbedUrl',
+          title: 'URL iframe Google Maps',
+          type: 'url',
+          description: 'URL d\'embed de la carte Google Maps',
           validation: (Rule) => Rule.required(),
         }),
       ],

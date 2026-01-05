@@ -34,7 +34,7 @@ async function getContactPageData(): Promise<ContactPageData> {
   return await client.fetch(
     `*[_type == "contactPage"][0]{
       hero,
-      contactCard
+      contactInfo
     }`,
     {},
     {
@@ -86,9 +86,9 @@ export default async function ContactPage() {
               {/* Contact Info */}
               <Card className="bg-gradient-to-br from-[#2C3A52] via-[#3E5173] to-[#4A6085] text-white border-0 shadow-xl">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-2xl md:text-3xl font-bold">{data.contactCard.title}</CardTitle>
+                  <CardTitle className="text-2xl md:text-3xl font-bold">{data.contactInfo.cardTitle}</CardTitle>
                   <CardDescription className="text-white/80 text-sm">
-                    {data.contactCard.description}
+                    {data.contactInfo.cardDescription}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5">
@@ -99,16 +99,16 @@ export default async function ContactPage() {
                     <div>
                       <p className="font-bold mb-2 text-white">Téléphone</p>
                       <a
-                        href="tel:0605506363"
+                        href={`tel:${data.contactInfo.phoneArtisan.replace(/\s/g, '')}`}
                         className="text-white/90 hover:text-white block text-lg font-medium transition-colors"
                       >
-                        Artisan : 06 05 50 63 63
+                        Artisan : {data.contactInfo.phoneArtisan}
                       </a>
                       <a
-                        href="tel:0783921405"
+                        href={`tel:${data.contactInfo.phoneSecretariat.replace(/\s/g, '')}`}
                         className="text-white/90 hover:text-white block font-medium transition-colors"
                       >
-                        Secrétariat : 07 83 92 14 05
+                        Secrétariat : {data.contactInfo.phoneSecretariat}
                       </a>
                     </div>
                   </div>
@@ -120,10 +120,10 @@ export default async function ContactPage() {
                     <div>
                       <p className="font-bold mb-2 text-white">Email</p>
                       <a
-                        href="mailto:contact@lebdepannage.fr"
+                        href={`mailto:${data.contactInfo.email}`}
                         className="text-white/90 hover:text-white text-lg font-medium transition-colors"
                       >
-                        contact@lebdepannage.fr
+                        {data.contactInfo.email}
                       </a>
                     </div>
                   </div>
@@ -135,14 +135,14 @@ export default async function ContactPage() {
                     <div>
                       <p className="font-bold mb-2 text-white">Adresse</p>
                       <a
-                        href="https://maps.google.com/?q=50+rue+du+dome+92100+Boulogne-Billancourt"
+                        href={data.contactInfo.address.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white/90 hover:text-white font-medium transition-colors"
                       >
-                        50 rue du Dôme
+                        {data.contactInfo.address.street}
                         <br />
-                        92100 Boulogne-Billancourt
+                        {data.contactInfo.address.city}
                       </a>
                     </div>
                   </div>
@@ -154,9 +154,9 @@ export default async function ContactPage() {
                     <div>
                       <p className="font-bold mb-2 text-white">Disponibilité</p>
                       <p className="text-white/90 font-medium">
-                        24h/24 - 7j/7
+                        {data.contactInfo.availability.hours}
                         <br />
-                        Urgences en Île-de-France
+                        {data.contactInfo.availability.coverage}
                       </p>
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export default async function ContactPage() {
                     </div>
                     <div className="rounded-lg overflow-hidden">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.2!2d2.2448!3d48.8396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDUwJzIyLjYiTiAywrAxNCc0MS4zIkU!5e0!3m2!1sfr!2sfr!4v1"
+                        src={data.contactInfo.mapEmbedUrl}
                         width="100%"
                         height="180"
                         style={{ border: 0 }}
