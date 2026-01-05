@@ -46,7 +46,7 @@ export default async function MentionsLegalesPage() {
         <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">{data.title}</h1>
 
-          <div className="prose prose-slate max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h2:text-foreground prose-h2:mb-4 prose-h2:mt-8 prose-p:text-muted-foreground prose-p:mb-2 prose-strong:text-foreground prose-a:text-primary prose-a:hover:underline prose-ul:list-disc prose-ul:pl-6 prose-ul:text-muted-foreground prose-ul:space-y-2 prose-li:text-muted-foreground">
+          <div className="prose prose-slate max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h2:text-foreground prose-h2:mb-6 prose-h2:mt-10 prose-h2:first:mt-0 prose-p:text-muted-foreground prose-p:mb-4 prose-p:leading-relaxed prose-strong:text-foreground prose-a:text-primary prose-a:hover:underline prose-ul:list-disc prose-ul:pl-6 prose-ul:text-muted-foreground prose-ul:my-4 prose-li:text-muted-foreground prose-li:my-1">
             <PortableText value={data.content} />
           </div>
         </div>
