@@ -3,9 +3,10 @@ import { writeClient } from '../sanity/client'
 // Helper to create a block
 function createBlock(style: string, textContent: string | Array<{text: string, marks?: string[]}>, listItem?: 'bullet') {
   const children = typeof textContent === 'string'
-    ? [{ _key: Math.random().toString(36).substr(2, 9), text: textContent, marks: [] }]
+    ? [{ _key: Math.random().toString(36).substr(2, 9), _type: 'span', text: textContent, marks: [] }]
     : textContent.map((item, idx) => ({
         _key: `span-${idx}-${Math.random().toString(36).substr(2, 9)}`,
+        _type: 'span',
         text: item.text,
         marks: item.marks || []
       }))
