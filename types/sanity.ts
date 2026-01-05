@@ -148,3 +148,13 @@ export interface ContactPageData {
     description: string
   }
 }
+
+// Types pour les pages légales
+export interface LegalPageData {
+  slug: {
+    current: string
+  }
+  title: string
+  lastUpdated?: string
+  content: any[] // Portable Text blocks
+}
