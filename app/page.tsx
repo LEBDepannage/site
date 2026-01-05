@@ -19,7 +19,7 @@ async function getHomePageData(): Promise<HomePageData> {
         }
       },
       servicesPreview,
-      realisationsPreview[]{
+      realisationsPreview{
         ...,
         realisations[]{
           ...,

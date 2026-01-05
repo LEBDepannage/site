@@ -5,7 +5,6 @@ import Image from "next/image"
 import { MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { urlFor } from "@/sanity/client"
 import type { RealisationsPageData } from "@/types/sanity"
 
 interface RealisationsContentProps {
@@ -72,9 +71,14 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
         <div className="container mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredRealisations.map((realisation) => {
-              // Get video URL from Sanity CDN if it's a video
-              const videoUrl = realisation.mediaType === 'video' && realisation.video?.asset?._ref
-                ? `https://cdn.sanity.io/files/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${realisation.video.asset._ref.replace('file-', '').replace('-mp4', '.mp4')}`
+              // Get video URL - use the URL from expanded asset
+              const videoUrl = realisation.mediaType === 'video' && realisation.video?.asset?.url
+                ? realisation.video.asset.url
+                : null
+
+              // Get image URL - use the URL from expanded asset
+              const imageUrl = realisation.mediaType === 'image' && realisation.image?.asset?.url
+                ? realisation.image.asset.url
                 : null
 
               return (
@@ -92,9 +96,9 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
                         loop
                         playsInline
                       />
-                    ) : realisation.image ? (
+                    ) : imageUrl ? (
                       <Image
-                        src={urlFor(realisation.image).url()}
+                        src={imageUrl}
                         alt={realisation.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
