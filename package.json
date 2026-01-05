@@ -13,6 +13,7 @@
     "sanity:migrate-home": "tsx scripts/migrate-homepage.ts",
     "sanity:migrate-services": "tsx scripts/migrate-services.ts",
     "sanity:migrate-realisations": "tsx scripts/migrate-realisations.ts",
+    "sanity:migrate-contact": "tsx scripts/migrate-contact.ts",
     "sanity:migrate-settings": "tsx scripts/migrate-site-settings.ts"
   },
   "dependencies": {

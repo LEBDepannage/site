@@ -136,3 +136,15 @@ export interface RealisationsPageData {
     buttonLink: string
   }
 }
+
+// Types pour la page Contact
+export interface ContactPageData {
+  hero: {
+    title: string
+    description: string
+  }
+  contactCard: {
+    title: string
+    description: string
+  }
+}

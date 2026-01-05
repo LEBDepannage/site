@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemas } from './sanity/schemas'
-import { Home, Wrench, Image, Settings } from 'lucide-react'
+import { Home, Wrench, Image, Settings, Mail } from 'lucide-react'
 
 export default defineConfig({
   name: 'default',
@@ -45,6 +45,16 @@ export default defineConfig({
                 S.document()
                   .schemaType('realisationsPage')
                   .documentId('realisationsPage')
+              ),
+
+            // Page Contact
+            S.listItem()
+              .title('Page Contact')
+              .icon(Mail)
+              .child(
+                S.document()
+                  .schemaType('contactPage')
+                  .documentId('contactPage')
               ),
 
             // Séparateur

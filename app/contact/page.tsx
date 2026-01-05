@@ -5,6 +5,8 @@ import { ContactForm } from "@/components/contact-form"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Image from "next/image"
+import { client } from "@/sanity/client"
+import type { ContactPageData } from "@/types/sanity"
 
 export const metadata: Metadata = {
   title: "Devis Gratuit Plomberie à Boulogne-Billancourt",
@@ -28,7 +30,38 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ContactPage() {
+async function getContactPageData(): Promise<ContactPageData> {
+  return await client.fetch(
+    `*[_type == "contactPage"][0]{
+      hero,
+      contactCard
+    }`,
+    {},
+    {
+      next: { revalidate: 60 }
+    }
+  )
+}
+
+export default async function ContactPage() {
+  const data = await getContactPageData()
+
+  if (!data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center p-8 bg-yellow-50 border-2 border-yellow-200 rounded-lg max-w-2xl">
+          <h1 className="text-2xl font-bold text-yellow-800 mb-4">⚠️ Données Sanity manquantes</h1>
+          <p className="text-yellow-700 mb-4">
+            Les données de la page Contact n'ont pas encore été migrées vers Sanity.
+          </p>
+          <div className="bg-white p-4 rounded border border-yellow-200 text-left">
+            <p className="font-semibold mb-2">Pour créer les données, exécutez:</p>
+            <code className="block bg-gray-100 p-2 rounded text-sm">npm run sanity:migrate-contact</code>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="min-h-screen">
       <Header />
@@ -38,9 +71,9 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE0YzMuMzEgMCA2LTIuNjkgNi02cy0yLjY5LTYtNi02LTYgMi42OS02IDYgMi42OSA2IDYgNnptLTE4IDBjMy4zMSAwIDYtMi42OSA2LTZzLTIuNjktNi02LTYtNiAyLjY5LTYgNiAyLjY5IDYgNiA2em0wIDE4YzMuMzEgMCA2LTIuNjkgNi02cy0yLjY5LTYtNi02LTYgMi42OS02IDYgMi42OSA2IDYgNnptMTggMGMzLjMxIDAgNi0yLjY5IDYtNnMtMi42OS02LTYtNi02IDIuNjktNiA2IDIuNjkgNiA2IDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
 
           <div className="container relative mx-auto px-4 md:px-8 lg:px-12 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Contactez-Nous</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">{data.hero.title}</h1>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Demandez votre devis gratuit sur mesure ou appelez-nous directement pour une intervention rapide.
+              {data.hero.description}
             </p>
           </div>
         </section>
@@ -53,9 +86,9 @@ export default function ContactPage() {
               {/* Contact Info */}
               <Card className="bg-gradient-to-br from-[#2C3A52] via-[#3E5173] to-[#4A6085] text-white border-0 shadow-xl">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-2xl md:text-3xl font-bold">Nos Coordonnées</CardTitle>
+                  <CardTitle className="text-2xl md:text-3xl font-bold">{data.contactCard.title}</CardTitle>
                   <CardDescription className="text-white/80 text-sm">
-                    Disponible 24h/24 pour vos urgences en Île-de-France
+                    {data.contactCard.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5">
