@@ -53,8 +53,13 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
 
             const logoSrc = localLogos[platform.name] || (platform.logo ? urlFor(platform.logo).url() : '')
 
+            // Forcer le lien Google en dur
+            const platformLink = platform.name === 'Google'
+              ? 'https://www.google.com/search?sa=X&sca_esv=a891270acf4ea91d&sxsrf=AE3TifP6d3-RpiYFMUQMOpPKUQj_K3zgQg:1767823154902&q=LEB+depannage+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLUwMzY2NLEwM7IwNjAwN7G0sNzAyPiKUcjH1UkhJbUgMS8vMT1VwbEss3gRKxZBAOkADX1FAAAA&rldimm=15863314862830074989&tbm=lcl&hl=fr-FR&ved=2ahUKEwiCybG5tvqRAxXbTKQEHTCcDB4Q9fQKegQITRAG&biw=1280&bih=665&dpr=1.5#lkt=LocalPoiReviews'
+              : platform.link
+
             return (
-              <a key={platform._key} href={platform.link} target="_blank" rel="noopener noreferrer">
+              <a key={platform._key} href={platformLink} target="_blank" rel="noopener noreferrer">
                 <Card className="bg-white border-2 border-border hover:border-primary p-8 shadow-md hover:shadow-xl transition-all cursor-pointer">
                   <CardContent className="p-0 flex items-center gap-6">
                     {logoSrc ? (
