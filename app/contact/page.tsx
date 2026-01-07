@@ -207,7 +207,7 @@ export default async function ContactPage() {
                   </div>
                   <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors h-[100px] w-full md:w-auto md:min-w-[200px]">
                     <Image
-                      src="/logo-CEDEO.png"
+                      src="/cedeo.png"
                       alt="Cedeo"
                       width={160}
                       height={60}
