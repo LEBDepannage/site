@@ -21,11 +21,11 @@ export function Footer() {
 
           {/* Right side - Navigation */}
           <div className="flex flex-col gap-6 w-full md:w-auto">
-            <nav className="flex flex-wrap gap-4 md:gap-8 justify-center md:justify-start">
+            <nav className="flex flex-wrap gap-3 md:gap-8 justify-center md:justify-start items-center">
               <Link
                 href="/"
                 className={cn(
-                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg",
+                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg whitespace-nowrap",
                   pathname === "/" ? "opacity-70 cursor-default" : "hover:text-white/80"
                 )}
               >
@@ -34,7 +34,7 @@ export function Footer() {
               <Link
                 href="/services"
                 className={cn(
-                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg",
+                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg whitespace-nowrap",
                   pathname === "/services" ? "opacity-70 cursor-default" : "hover:text-white/80"
                 )}
               >
@@ -43,7 +43,7 @@ export function Footer() {
               <Link
                 href="/realisations"
                 className={cn(
-                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg",
+                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg whitespace-nowrap",
                   pathname === "/realisations" ? "opacity-70 cursor-default" : "hover:text-white/80"
                 )}
               >
@@ -52,7 +52,7 @@ export function Footer() {
               <Link
                 href="/contact"
                 className={cn(
-                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg",
+                  "text-sm font-semibold text-white transition-colors uppercase tracking-wide drop-shadow-lg whitespace-nowrap",
                   pathname === "/contact" ? "opacity-70 cursor-default" : "hover:text-white/80"
                 )}
               >
