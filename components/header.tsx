@@ -31,6 +31,14 @@ export function Header() {
     }
   }, [isMenuOpen])
 
+  // Close menu with smooth transition
+  const handleLinkClick = () => {
+    // Add a small delay before closing for smoother transition
+    setTimeout(() => {
+      setIsMenuOpen(false)
+    }, 200)
+  }
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-white/95 backdrop-blur-md shadow-sm">
@@ -137,7 +145,7 @@ export function Header() {
                 style={{
                   transitionDelay: isMenuOpen ? `${index * 75}ms` : '0ms'
                 }}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={handleLinkClick}
               >
                 <div className="flex items-center justify-between">
                   <span className={cn(
