@@ -112,12 +112,12 @@ export function Header() {
 
       {/* Full Screen Mobile Navigation */}
       <div className={cn(
-        "fixed inset-0 z-[55] md:hidden transition-transform duration-300 ease-in-out",
+        "fixed top-0 left-0 right-0 bottom-0 z-[55] md:hidden transition-transform duration-300 ease-in-out",
         isMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        {/* Backdrop with gradient */}
+        {/* Backdrop with gradient - covers entire screen */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary to-primary/90 backdrop-blur-md"
+          className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-br from-primary/95 via-primary to-primary/90 backdrop-blur-md"
           onClick={() => setIsMenuOpen(false)}
         />
 
