@@ -40,8 +40,12 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
         </div>
 
         {/* Review platforms */}
-        <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-          {data.platforms.map((platform) => {
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-lg text-muted-foreground mb-8 font-medium">
+            Consultez nos avis sur Google et Travaux.com
+          </p>
+          <div className="grid gap-8 md:grid-cols-2">
+            {data.platforms.map((platform) => {
             const fullStars = Math.floor(platform.rating)
             const hasHalfStar = platform.rating % 1 >= 0.5
 
@@ -103,6 +107,7 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
               </a>
             )
           })}
+          </div>
         </div>
       </div>
     </section>
