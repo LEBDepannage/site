@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema"
+import { OrganizationSchema } from "@/components/OrganizationSchema"
 import "./globals.css"
 
 const inter = Inter({
@@ -111,6 +112,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+        <OrganizationSchema />
         <LocalBusinessSchema
           name="LEB Dépannage"
           description="Artisan plombier à Boulogne-Billancourt, spécialisé en plomberie, menuiserie, carrelage, électricité et peinture."
