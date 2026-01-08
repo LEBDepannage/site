@@ -123,23 +123,23 @@ export function Header() {
 
         {/* Close Button */}
         <button
-          className="absolute top-3 landscape:top-2 right-4 landscape:right-3 z-[60] p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300"
+          className="absolute top-3 max-lg:landscape:top-2 right-4 max-lg:landscape:right-3 z-[60] p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300"
           onClick={() => setIsMenuOpen(false)}
           aria-label="Fermer le menu"
         >
-          <X className="h-6 w-6 landscape:h-5 landscape:w-5 text-white" />
+          <X className="h-6 w-6 max-lg:landscape:h-5 max-lg:landscape:w-5 text-white" />
         </button>
 
         {/* Menu Content */}
-        <div className="relative min-h-full flex flex-col justify-between px-6 landscape:px-4 pt-16 landscape:pt-12 pb-6 landscape:pb-4">
+        <div className="relative min-h-full flex flex-col justify-between px-6 max-lg:landscape:px-4 pt-16 max-lg:landscape:pt-12 pb-6 max-lg:landscape:pb-4">
           {/* Navigation Links */}
-          <nav className="flex flex-col gap-1 landscape:gap-0">
+          <nav className="flex flex-col gap-1 max-lg:landscape:gap-0">
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group relative py-4 landscape:py-2 text-white transition-all duration-300",
+                  "group relative py-4 max-lg:landscape:py-2 text-white transition-all duration-300",
                   isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
                 )}
                 style={{
@@ -149,7 +149,7 @@ export function Header() {
               >
                 <div className="flex items-center justify-between">
                   <span className={cn(
-                    "text-3xl landscape:text-2xl font-bold tracking-tight uppercase transition-all duration-300",
+                    "text-3xl max-lg:landscape:text-2xl font-bold tracking-tight uppercase transition-all duration-300",
                     pathname === link.href
                       ? "text-white translate-x-4"
                       : "text-white/70 group-hover:text-white group-hover:translate-x-4"
@@ -157,7 +157,7 @@ export function Header() {
                     {link.label}
                   </span>
                   <span className={cn(
-                    "text-5xl landscape:text-4xl font-light text-white/20 transition-all duration-300",
+                    "text-5xl max-lg:landscape:text-4xl font-light text-white/20 transition-all duration-300",
                     pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-50"
                   )}>
                     →
@@ -165,7 +165,7 @@ export function Header() {
                 </div>
                 {/* Active indicator */}
                 {pathname === link.href && (
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 landscape:h-8 bg-white rounded-full" />
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 max-lg:landscape:h-8 bg-white rounded-full" />
                 )}
               </Link>
             ))}
@@ -173,31 +173,31 @@ export function Header() {
 
           {/* Contact Section */}
           <div className={cn(
-            "space-y-6 landscape:space-y-3 mt-auto transition-all duration-500 delay-300",
+            "space-y-6 max-lg:landscape:space-y-3 mt-auto transition-all duration-500 delay-300",
             isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}>
             {/* Divider */}
             <div className="h-px bg-white/20" />
 
             {/* Call to Action */}
-            <div className="space-y-4 landscape:space-y-2">
-              <p className="text-white/80 text-sm landscape:text-xs uppercase tracking-wider font-medium">
+            <div className="space-y-4 max-lg:landscape:space-y-2">
+              <p className="text-white/80 text-sm max-lg:landscape:text-xs uppercase tracking-wider font-medium">
                 Contactez-Nous
               </p>
               <Button
                 asChild
                 size="lg"
-                className="w-full bg-white text-primary hover:bg-white/90 font-bold text-lg landscape:text-base py-6 landscape:py-4 rounded-2xl landscape:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                className="w-full bg-white text-primary hover:bg-white/90 font-bold text-lg max-lg:landscape:text-base py-6 max-lg:landscape:py-4 rounded-2xl max-lg:landscape:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
               >
                 <a href="tel:0605506363" className="flex items-center justify-center gap-3">
-                  <Phone className="h-5 w-5 landscape:h-4 landscape:w-4" />
+                  <Phone className="h-5 w-5 max-lg:landscape:h-4 max-lg:landscape:w-4" />
                   06 05 50 63 63
                 </a>
               </Button>
             </div>
 
             {/* Decorative Element */}
-            <div className="flex justify-center pt-4 landscape:pt-2">
+            <div className="flex justify-center pt-4 max-lg:landscape:pt-2">
               <div className="flex gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
                 <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
