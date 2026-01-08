@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemas } from './sanity/schemas'
-import { Home, Wrench, Image, Settings, Mail, FileText } from 'lucide-react'
+import { Home, Wrench, Image, Mail, FileText, Layout, LayoutGrid } from 'lucide-react'
 
 export default defineConfig({
   name: 'default',
@@ -70,14 +70,24 @@ export default defineConfig({
             // Séparateur
             S.divider(),
 
-            // Paramètres du site
+            // Header
             S.listItem()
-              .title('Paramètres du site')
-              .icon(Settings)
+              .title('Header')
+              .icon(Layout)
               .child(
                 S.document()
-                  .schemaType('siteSettings')
-                  .documentId('siteSettings')
+                  .schemaType('header')
+                  .documentId('header')
+              ),
+
+            // Footer
+            S.listItem()
+              .title('Footer')
+              .icon(LayoutGrid)
+              .child(
+                S.document()
+                  .schemaType('footer')
+                  .documentId('footer')
               ),
           ]),
     }),
