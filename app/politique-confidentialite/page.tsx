@@ -46,7 +46,11 @@ async function getPolitiqueConfidentialiteData(): Promise<LegalPageData> {
 }
 
 export default async function PolitiqueConfidentialitePage() {
-  const data = await getPolitiqueConfidentialiteData()
+  const [data, headerData, footerData] = await Promise.all([
+    getPolitiqueConfidentialiteData(),
+    getHeaderData(),
+    getFooterData(),
+  ])
 
   if (!data) {
     return (

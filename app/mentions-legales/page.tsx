@@ -46,7 +46,11 @@ async function getMentionsLegalesData(): Promise<LegalPageData> {
 }
 
 export default async function MentionsLegalesPage() {
-  const data = await getMentionsLegalesData()
+  const [data, headerData, footerData] = await Promise.all([
+    getMentionsLegalesData(),
+    getHeaderData(),
+    getFooterData(),
+  ])
 
   if (!data) {
     return (
