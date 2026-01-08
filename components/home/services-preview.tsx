@@ -9,13 +9,13 @@ interface ServicesPreviewProps {
 
 export function ServicesPreview({ data }: ServicesPreviewProps) {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 landscape:py-12 md:py-28 bg-white">
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         <div className="text-center max-w-4xl mx-auto">
-          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4 letterSpacing-[0.15em]">
+          <p className="text-sm landscape:text-xs font-bold text-primary uppercase tracking-widest mb-4 landscape:mb-3 letterSpacing-[0.15em]">
             {data.sectionLabel}
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+          <h2 className="text-3xl landscape:text-2xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 landscape:mb-4 leading-tight">
             {data.title}
           </h2>
           {/* Description - Portable Text à implémenter proprement plus tard */}
