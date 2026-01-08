@@ -7,6 +7,7 @@ import { RealisationsPreview } from "@/components/home/realisations-preview"
 import { TestimonialsPreview } from "@/components/home/testimonials-preview"
 import { CTASection } from "@/components/home/cta-section"
 import { Footer } from "@/components/footer"
+import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 
 async function getHomePageData(): Promise<HomePageData> {
   return await client.fetch(
@@ -39,7 +40,11 @@ async function getHomePageData(): Promise<HomePageData> {
 }
 
 export default async function HomePage() {
-  const data = await getHomePageData()
+  const [data, headerData, footerData] = await Promise.all([
+    getHomePageData(),
+    getHeaderData(),
+    getFooterData(),
+  ])
 
   // Si les données ne sont pas encore migrées vers Sanity
   if (!data) {
@@ -61,7 +66,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header data={headerData || undefined} />
       <main>
         <Hero data={data.hero} />
         <ServicesPreview data={data.servicesPreview} />
@@ -69,7 +74,7 @@ export default async function HomePage() {
         <TestimonialsPreview data={data.testimonials} />
         <CTASection />
       </main>
-      <Footer />
+      <Footer data={footerData || undefined} />
     </div>
   )
 }

@@ -7,17 +7,28 @@ import { usePathname } from "next/navigation"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import type { HeaderData } from "@/types/sanity"
 
-const navLinks = [
-  { href: "/", label: "ACCUEIL" },
-  { href: "/services", label: "SERVICES" },
-  { href: "/realisations", label: "RÉALISATIONS" },
-  { href: "/contact", label: "CONTACT" },
+interface HeaderProps {
+  data?: HeaderData
+}
+
+// Fallback data
+const defaultNavLinks = [
+  { _key: "1", href: "/", label: "ACCUEIL" },
+  { _key: "2", href: "/services", label: "SERVICES" },
+  { _key: "3", href: "/realisations", label: "RÉALISATIONS" },
+  { _key: "4", href: "/contact", label: "CONTACT" },
 ]
 
-export function Header() {
+export function Header({ data }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+
+  // Use Sanity data or fallback
+  const navLinks = data?.navLinks || defaultNavLinks
+  const contactPhone = data?.contactPhone || "06 05 50 63 63"
+  const contactButtonLabel = data?.contactButtonLabel || "Contactez-Nous"
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -78,9 +89,9 @@ export function Header() {
 
           <div className="hidden md:flex items-center">
             <Button asChild className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-6 h-11 shadow-md hover:shadow-lg transition-all">
-              <a href="tel:0605506363">
+              <a href={`tel:${contactPhone.replace(/\s/g, '')}`}>
                 <Phone className="mr-2 h-4 w-4" />
-                06 05 50 63 63
+                {contactPhone}
               </a>
             </Button>
           </div>
@@ -182,16 +193,16 @@ export function Header() {
             {/* Call to Action */}
             <div className="space-y-4 max-lg:landscape:space-y-2">
               <p className="text-white/80 text-sm max-lg:landscape:text-xs uppercase tracking-wider font-medium">
-                Contactez-Nous
+                {contactButtonLabel}
               </p>
               <Button
                 asChild
                 size="lg"
                 className="w-full bg-white text-primary hover:bg-white/90 font-bold text-lg max-lg:landscape:text-base py-6 max-lg:landscape:py-4 rounded-2xl max-lg:landscape:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
               >
-                <a href="tel:0605506363" className="flex items-center justify-center gap-3">
+                <a href={`tel:${contactPhone.replace(/\s/g, '')}`} className="flex items-center justify-center gap-3">
                   <Phone className="h-5 w-5 max-lg:landscape:h-4 max-lg:landscape:w-4" />
-                  06 05 50 63 63
+                  {contactPhone}
                 </a>
               </Button>
             </div>

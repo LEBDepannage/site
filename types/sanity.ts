@@ -171,3 +171,33 @@ export interface LegalPageData {
   lastUpdated?: string
   content: any[] // Portable Text blocks
 }
+
+// Types pour Header
+export interface HeaderData {
+  logo?: SanityImageSource
+  navLinks: Array<{
+    _key: string
+    label: string
+    href: string
+  }>
+  contactPhone: string
+  contactButtonLabel: string
+}
+
+// Types pour Footer
+export interface FooterData {
+  companyName: string
+  description: string
+  mainNavLinks: Array<{
+    _key: string
+    label: string
+    href: string
+  }>
+  legalLinks: Array<{
+    _key: string
+    label: string
+    href: string
+  }>
+  address: string
+  copyrightText?: string
+}
