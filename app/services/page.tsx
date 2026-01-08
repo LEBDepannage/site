@@ -10,6 +10,9 @@ import Link from "next/link"
 import { client } from "@/sanity/client"
 import type { ServicesPageData } from "@/types/sanity"
 
+// Force dynamic rendering to bypass all caching
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Plomberie & Rénovation à Boulogne-Billancourt",
   description:
