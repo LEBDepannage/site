@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lebdepannage.fr"),
+  metadataBase: new URL("https://lebdepannage.com"),
   title: {
     default: "LEB Dépannage | Plombier à Boulogne-Billancourt - Urgence 24h/24",
     template: "%s | LEB Dépannage",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://lebdepannage.fr",
+    url: "https://lebdepannage.com",
     title: "LEB Dépannage | Plombier à Boulogne-Billancourt",
     description: "Votre artisan plombier de confiance. 10 ans d'expérience, disponible 24h/24. Devis gratuit.",
     siteName: "LEB Dépannage",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     images: ["/images/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://lebdepannage.fr",
+    canonical: "https://lebdepannage.com",
   },
   icons: {
     icon: [
@@ -120,9 +120,9 @@ export default function RootLayout({
         <LocalBusinessSchema
           name="LEB Dépannage"
           description="Artisan plombier à Boulogne-Billancourt, spécialisé en plomberie, menuiserie, carrelage, électricité et peinture."
-          url="https://lebdepannage.fr"
-          image="https://lebdepannage.fr/images/image.png"
-          logo="https://lebdepannage.fr/images/image.png"
+          url="https://lebdepannage.com"
+          image="https://lebdepannage.com/images/image.png"
+          logo="https://lebdepannage.com/images/image.png"
           telephone="+33605506363"
           email="contact@lebdepannage.fr"
           streetAddress="50 rue du Dôme"

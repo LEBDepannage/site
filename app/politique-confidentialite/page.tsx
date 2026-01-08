@@ -1,9 +1,17 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { client } from "@/sanity/client"
 import type { LegalPageData } from "@/types/sanity"
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
 
 // Composants personnalisés pour le rendu Portable Text
 const portableTextComponents: PortableTextComponents = {
