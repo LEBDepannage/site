@@ -99,7 +99,7 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
                     ) : imageUrl ? (
                       <Image
                         src={imageUrl}
-                        alt={realisation.title}
+                        alt={realisation.image?.alt || realisation.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                         unoptimized
