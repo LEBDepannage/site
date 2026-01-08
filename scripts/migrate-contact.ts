@@ -24,7 +24,7 @@ async function migrateContactPage() {
       address: {
         street: '50 rue du Dôme',
         city: '92100 Boulogne-Billancourt',
-        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=50+rue+du+D%C3%B4me%2C+92100+Boulogne-Billancourt',
+        googleMapsUrl: 'https://maps.app.goo.gl/Lhn3xnk7959tPHnaA',
       },
       availability: {
         hours: '24h/24 - 7j/7',
