@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 import { Wrench, PaintBucket, Lightbulb, Grid3X3, Hammer, Home } from "lucide-react"
 import * as LucideIcons from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -46,7 +47,11 @@ async function getServicesPageData(): Promise<ServicesPageData> {
 }
 
 export default async function ServicesPage() {
-  const data = await getServicesPageData()
+  const [data, headerData, footerData] = await Promise.all([
+    getServicesPageData(),
+    getHeaderData(),
+    getFooterData(),
+  ])
 
   if (!data) {
     return (
@@ -67,7 +72,7 @@ export default async function ServicesPage() {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header data={headerData || undefined} />
       <main>
         {/* Hero */}
         <section className="relative py-20 md:py-28 bg-gradient-to-br from-[#2C3A52] via-[#3E5173] to-[#4A6085] text-white overflow-hidden">
@@ -144,7 +149,7 @@ export default async function ServicesPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer data={footerData || undefined} />
     </div>
   )
 }

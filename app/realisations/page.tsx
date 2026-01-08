@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 import { client } from "@/sanity/client"
 import type { RealisationsPageData } from "@/types/sanity"
 import { RealisationsContent } from "./realisations-content"
@@ -30,7 +31,11 @@ async function getRealisationsPageData(): Promise<RealisationsPageData> {
 }
 
 export default async function RealisationsPage() {
-  const data = await getRealisationsPageData()
+  const [data, headerData, footerData] = await Promise.all([
+    getRealisationsPageData(),
+    getHeaderData(),
+    getFooterData(),
+  ])
 
   if (!data) {
     return (
@@ -51,9 +56,9 @@ export default async function RealisationsPage() {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header data={headerData || undefined} />
       <RealisationsContent data={data} />
-      <Footer />
+      <Footer data={footerData || undefined} />
     </div>
   )
 }

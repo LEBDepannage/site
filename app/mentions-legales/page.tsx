@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { client } from "@/sanity/client"
 import type { LegalPageData } from "@/types/sanity"
@@ -66,7 +67,7 @@ export default async function MentionsLegalesPage() {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header data={headerData || undefined} />
       <main className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">{data.title}</h1>
@@ -76,7 +77,7 @@ export default async function MentionsLegalesPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer data={footerData || undefined} />
     </div>
   )
 }

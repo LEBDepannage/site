@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 import { ContactForm } from "@/components/contact-form"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -44,7 +45,11 @@ async function getContactPageData(): Promise<ContactPageData> {
 }
 
 export default async function ContactPage() {
-  const data = await getContactPageData()
+  const [data, headerData, footerData] = await Promise.all([
+    getContactPageData(),
+    getHeaderData(),
+    getFooterData(),
+  ])
 
   if (!data) {
     return (
@@ -64,7 +69,7 @@ export default async function ContactPage() {
   }
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header data={headerData || undefined} />
       <main>
         {/* Hero */}
         <section className="relative py-20 md:py-28 bg-gradient-to-br from-[#2C3A52] via-[#3E5173] to-[#4A6085] text-white overflow-hidden">
@@ -229,7 +234,7 @@ export default async function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer data={footerData || undefined} />
     </div>
   )
 }
