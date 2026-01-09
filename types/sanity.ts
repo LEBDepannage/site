@@ -67,10 +67,30 @@ export interface TestimonialsData {
   }>
 }
 
+export interface RecentVideoData {
+  sectionLabel: string
+  title: string
+  description?: string
+  video?: {
+    asset: {
+      _ref: string
+      _type: string
+    }
+    alt?: string
+  }
+  thumbnail?: SanityImageSource
+  projectDetails?: {
+    category?: string
+    location?: string
+    duration?: string
+  }
+}
+
 export interface HomePageData {
   hero: HeroData
   servicesPreview: ServicesPreviewData
   realisationsPreview: RealisationsPreviewData
+  recentVideo?: RecentVideoData
   testimonials: TestimonialsData
 }
 
@@ -118,6 +138,7 @@ export interface RealisationData {
     asset: {
       _ref: string
       _type: string
+      url?: string
     }
   }
 }

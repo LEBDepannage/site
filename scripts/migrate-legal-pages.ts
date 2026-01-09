@@ -1,15 +1,15 @@
 import { writeClient } from '../sanity/client'
 
 // Helper to create a block
-function createBlock(style: string, textContent: string | Array<{text: string, marks?: string[]}>, listItem?: 'bullet') {
+function createBlock(style: string, textContent: string | Array<{ text: string, marks?: string[] }>, listItem?: 'bullet') {
   const children = typeof textContent === 'string'
     ? [{ _key: Math.random().toString(36).substr(2, 9), _type: 'span', text: textContent, marks: [] }]
     : textContent.map((item, idx) => ({
-        _key: `span-${idx}-${Math.random().toString(36).substr(2, 9)}`,
-        _type: 'span',
-        text: item.text,
-        marks: item.marks || []
-      }))
+      _key: `span-${idx}-${Math.random().toString(36).substr(2, 9)}`,
+      _type: 'span',
+      text: item.text,
+      marks: item.marks || []
+    }))
 
   const block: any = {
     _key: `block-${Math.random().toString(36).substr(2, 9)}`,
@@ -72,15 +72,15 @@ async function migrateLegalPages() {
       createBlock('h2', '3. Hébergement du site'),
       createBlock('normal', [
         { text: 'Hébergeur : ', marks: ['strong'] },
-        { text: 'Vercel Inc.' }
+        { text: 'Netlify Inc.' }
       ]),
       createBlock('normal', [
         { text: 'Adresse : ', marks: ['strong'] },
-        { text: '340 S Lemon Ave #4133, Walnut, CA 91789, USA' }
+        { text: '512 2nd Street, Floor 2, San Francisco, CA 94107, USA' }
       ]),
       createBlock('normal', [
         { text: 'Site web : ', marks: ['strong'] },
-        { text: 'vercel.com' }
+        { text: 'netlify.com' }
       ]),
 
       createBlock('h2', '4. Propriété intellectuelle'),

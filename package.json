@@ -16,7 +16,8 @@
     "sanity:migrate-contact": "tsx scripts/migrate-contact.ts",
     "sanity:migrate-legal": "tsx scripts/migrate-legal-pages.ts",
     "sanity:migrate-header": "tsx scripts/migrate-header.ts",
-    "sanity:migrate-footer": "tsx scripts/migrate-footer.ts"
+    "sanity:migrate-footer": "tsx scripts/migrate-footer.ts",
+    "sanity:add-video": "tsx scripts/add-recent-video.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

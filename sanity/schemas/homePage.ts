@@ -125,7 +125,6 @@ export const homePage = defineType({
               ],
             },
           ],
-          validation: (Rule) => Rule.max(5),
         },
         {
           name: 'ctaText',
@@ -178,6 +177,73 @@ export const homePage = defineType({
           name: 'ctaText',
           title: 'Texte du bouton CTA',
           type: 'string',
+        },
+      ],
+    }),
+
+    // Recent Project Video Section
+    defineField({
+      name: 'recentVideo',
+      title: 'Vidéo Chantier Récent',
+      type: 'object',
+      fields: [
+        {
+          name: 'sectionLabel',
+          title: 'Label section',
+          type: 'string',
+          initialValue: 'CHANTIER RÉCENT',
+        },
+        {
+          name: 'title',
+          title: 'Titre',
+          type: 'string',
+          initialValue: 'Notre dernier chantier en vidéo',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'video',
+          title: 'Vidéo du chantier',
+          type: 'file',
+          options: {
+            accept: 'video/*',
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Description de la vidéo',
+            },
+          ],
+        },
+        {
+          name: 'thumbnail',
+          title: 'Image miniature (optionnel)',
+          type: 'image',
+          description: 'Image affichée avant le chargement de la vidéo',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Texte alternatif',
+            },
+          ],
+        },
+        {
+          name: 'projectDetails',
+          title: 'Détails du projet',
+          type: 'object',
+          fields: [
+            { name: 'category', type: 'string', title: 'Catégorie' },
+            { name: 'location', type: 'string', title: 'Localisation' },
+            { name: 'duration', type: 'string', title: 'Durée du chantier' },
+          ],
         },
       ],
     }),

@@ -1,24 +1,15 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image"
 import { MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import type { RealisationsPageData } from "@/types/sanity"
+import { urlFor } from "@/sanity/client"
 
 interface RealisationsContentProps {
   data: RealisationsPageData
 }
 
 export function RealisationsContent({ data }: RealisationsContentProps) {
-  const [selectedCategory, setSelectedCategory] = useState("Tous")
-
-  const filteredRealisations =
-    selectedCategory === "Tous"
-      ? data.realisations
-      : data.realisations.filter((r) => r.category === selectedCategory)
-
   return (
     <main>
       {/* Hero */}
@@ -35,50 +26,19 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
         </div>
       </section>
 
-      {/* Category filters */}
-      <section className="py-8 bg-background border-b border-border">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => setSelectedCategory("Tous")}
-              className={`px-6 py-3 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === "Tous"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-muted-foreground hover:bg-secondary/80"
-              }`}
-            >
-              Tous
-            </button>
-            {data.categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
-                  selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-muted-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Gallery */}
       <section className="py-20 md:py-28 bg-gradient-to-b from-white to-slate-50">
         <div className="container mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filteredRealisations.map((realisation) => {
+            {data.realisations.map((realisation) => {
               // Get video URL - use the URL from expanded asset
               const videoUrl = realisation.mediaType === 'video' && realisation.video?.asset?.url
                 ? realisation.video.asset.url
                 : null
 
-              // Get image URL - use the URL from expanded asset
-              const imageUrl = realisation.mediaType === 'image' && realisation.image?.asset?.url
-                ? realisation.image.asset.url
+              // Get image URL - use the URL from expanded asset with hotspot support
+              const imageUrl = realisation.mediaType === 'image' && realisation.image
+                ? urlFor(realisation.image).width(800).height(600).url()
                 : null
 
               return (

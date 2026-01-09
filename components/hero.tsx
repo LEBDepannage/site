@@ -67,7 +67,7 @@ export function Hero({ data }: HeroProps) {
           <div className="relative flex justify-center lg:justify-end max-lg:landscape:hidden">
             <div className="relative w-80 h-96 md:w-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/10">
               <Image
-                src={data.image ? urlFor(data.image).url() : "/images/photo-artisan.jpg"}
+                src={data.image ? urlFor(data.image).width(600).height(750).url() : "/images/photo-artisan.jpg"}
                 alt={data.image?.alt || "Artisan LEB Dépannage"}
                 fill
                 className="object-cover object-top"

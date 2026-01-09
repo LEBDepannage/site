@@ -30,6 +30,19 @@ async function getHomePageData(): Promise<HomePageData> {
           }
         }
       },
+      recentVideo{
+        ...,
+        video{
+          _type,
+          asset,
+          alt
+        },
+        thumbnail{
+          ...,
+          asset->
+        },
+        projectDetails
+      },
       testimonials
     }`,
     {},
@@ -70,7 +83,7 @@ export default async function HomePage() {
       <main>
         <Hero data={data.hero} />
         <ServicesPreview data={data.servicesPreview} />
-        <RealisationsPreview data={data.realisationsPreview} />
+        <RealisationsPreview data={data.realisationsPreview} videoData={data.recentVideo} />
         <TestimonialsPreview data={data.testimonials} />
         <CTASection />
       </main>
