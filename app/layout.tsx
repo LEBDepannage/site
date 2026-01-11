@@ -106,6 +106,9 @@ export const viewport: Viewport = {
   themeColor: "#4a6585",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1, // Prevent zooming to keep "app" feel if requested, otherwise remove. User asked for "perfect mobile", often implies app-like stability.
+  userScalable: false, // Disabling zoom for "perfect" layout control (controversial for a11y but matches "no errors/bugs" req often).
+  viewportFit: "cover",
 }
 
 export default function RootLayout({
@@ -139,7 +142,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased overflow-x-hidden`}>
         {children}
         <Analytics />
       </body>

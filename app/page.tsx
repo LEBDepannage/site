@@ -12,13 +12,7 @@ import { getHeaderData, getFooterData } from "@/lib/sanity-helpers"
 async function getHomePageData(): Promise<HomePageData> {
   return await client.fetch(
     `*[_type == "homePage"][0]{
-      hero{
-        ...,
-        image{
-          ...,
-          asset->
-        }
-      },
+      hero,
       servicesPreview,
       realisationsPreview{
         ...,
@@ -31,19 +25,14 @@ async function getHomePageData(): Promise<HomePageData> {
         }
       },
       recentVideo{
-        ...,
+        description,
         video{
           _type,
-          asset,
-          alt
-        },
-        thumbnail{
-          ...,
-          asset->
-        },
-        projectDetails
+          asset
+        }
       },
-      testimonials
+      testimonials,
+      bottomCta
     }`,
     {},
     {
@@ -85,7 +74,7 @@ export default async function HomePage() {
         <ServicesPreview data={data.servicesPreview} />
         <RealisationsPreview data={data.realisationsPreview} videoData={data.recentVideo} />
         <TestimonialsPreview data={data.testimonials} />
-        <CTASection />
+        {data.bottomCta && <CTASection data={data.bottomCta} />}
       </main>
       <Footer data={footerData || undefined} />
     </div>

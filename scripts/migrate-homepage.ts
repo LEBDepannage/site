@@ -238,6 +238,14 @@ async function migrateHomePage() {
           },
         ],
       },
+
+      bottomCta: {
+        title: 'Vous avez un projet en tête ?',
+        description: 'Contactez-nous pour discuter de votre projet et obtenir un devis gratuit.',
+        phone: '06 05 50 63 63',
+        ctaText: 'Demander un devis gratuit',
+        ctaLink: '/contact',
+      },
     }
 
     await writeClient.createOrReplace(document)
@@ -251,6 +259,7 @@ async function migrateHomePage() {
     console.log('- Services Preview: ✓')
     console.log('- Réalisations Preview: ✓')
     console.log('- Testimonials: ✓')
+    console.log('- Bottom CTA: ✓')
     console.log('\n⚠️  Note: Les images doivent être ajoutées manuellement après avoir exécuté npm run sanity:upload-images')
   } catch (error) {
     console.error('❌ Erreur lors de la migration:', error)

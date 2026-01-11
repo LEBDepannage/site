@@ -39,16 +39,6 @@ export const realisationsPage = defineType({
       ],
     }),
 
-    // Catégories
-    defineField({
-      name: 'categories',
-      title: 'Catégories',
-      type: 'array',
-      description: 'Liste des catégories pour le filtrage (ex: Menuiserie, Carrelage, Plâtrerie, Extérieur)',
-      of: [{ type: 'string' }],
-      validation: (Rule) => Rule.required().min(2),
-    }),
-
     // Réalisations
     defineField({
       name: 'realisations',

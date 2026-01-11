@@ -1,8 +1,16 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Phone, Mail, ArrowRight } from "lucide-react"
+import { Phone, ArrowRight } from "lucide-react"
+import type { BottomCtaData } from "@/types/sanity"
 
-export function CTASection() {
+interface CTASectionProps {
+  data: BottomCtaData
+}
+
+export function CTASection({ data }: CTASectionProps) {
+  // Formater le numéro de téléphone pour le lien tel:
+  const phoneLink = `tel:${data.phone.replace(/\s/g, '')}`
+
   return (
     <section className="relative py-20 md:py-28 bg-gradient-to-br from-[#2C3A52] via-[#3E5173] to-[#4A6085] text-white overflow-hidden">
       {/* Pattern overlay */}
@@ -11,10 +19,10 @@ export function CTASection() {
       <div className="container relative mx-auto px-4 md:px-8 lg:px-12">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white drop-shadow-2xl">
-            Vous avez un projet en tête ?
+            {data.title}
           </h2>
           <p className="text-lg md:text-xl text-white font-medium mb-10 leading-relaxed drop-shadow-lg">
-            Contactez-nous pour discuter de votre projet et obtenir un devis gratuit.
+            {data.description}
           </p>
 
           {/* Contact buttons */}
@@ -24,9 +32,9 @@ export function CTASection() {
               className="bg-white text-primary hover:bg-white/90 font-semibold rounded-full px-8 h-12 shadow-xl hover:shadow-2xl transition-all"
               asChild
             >
-              <a href="tel:0605506363">
+              <a href={phoneLink}>
                 <Phone className="mr-2 h-5 w-5" />
-                06 05 50 63 63
+                {data.phone}
               </a>
             </Button>
             <Button
@@ -35,8 +43,8 @@ export function CTASection() {
               className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold rounded-full px-8 h-12 bg-transparent backdrop-blur-sm transition-all"
               asChild
             >
-              <Link href="/contact">
-                Demander un devis gratuit
+              <Link href={data.ctaLink}>
+                {data.ctaText}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

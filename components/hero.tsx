@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Phone, CheckCircle, MapPin } from "lucide-react"
-import { urlFor } from "@/sanity/client"
 import type { HeroData } from "@/types/sanity"
 
 interface HeroProps {
@@ -65,14 +64,13 @@ export function Hero({ data }: HeroProps) {
           </div>
 
           <div className="relative flex justify-center lg:justify-end max-lg:landscape:hidden">
-            <div className="relative w-80 h-96 md:w-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/10">
+            <div className="relative w-full max-w-[320px] h-96 md:max-w-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/10">
               <Image
-                src={data.image ? urlFor(data.image).width(600).height(750).url() : "/images/photo-artisan.jpg"}
-                alt={data.image?.alt || "Artisan LEB Dépannage"}
+                src="/images/photo-artisan.jpg"
+                alt="Artisan LEB Dépannage"
                 fill
                 className="object-cover object-top"
                 priority
-                unoptimized={!!data.image}
               />
             </div>
           </div>

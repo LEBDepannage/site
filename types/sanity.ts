@@ -18,7 +18,6 @@ export interface HeroData {
     text: string
     icon: string
   }>
-  image?: SanityImageSource
 }
 
 export interface ServicesPreviewData {
@@ -68,22 +67,21 @@ export interface TestimonialsData {
 }
 
 export interface RecentVideoData {
-  sectionLabel: string
-  title: string
   description?: string
   video?: {
     asset: {
       _ref: string
       _type: string
     }
-    alt?: string
   }
-  thumbnail?: SanityImageSource
-  projectDetails?: {
-    category?: string
-    location?: string
-    duration?: string
-  }
+}
+
+export interface BottomCtaData {
+  title: string
+  description: string
+  phone: string
+  ctaText: string
+  ctaLink: string
 }
 
 export interface HomePageData {
@@ -92,6 +90,7 @@ export interface HomePageData {
   realisationsPreview: RealisationsPreviewData
   recentVideo?: RecentVideoData
   testimonials: TestimonialsData
+  bottomCta?: BottomCtaData
 }
 
 // Types pour la page Services
@@ -148,7 +147,6 @@ export interface RealisationsPageData {
     title: string
     description: string
   }
-  categories: string[]
   realisations: RealisationData[]
   cta: {
     title: string

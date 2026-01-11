@@ -71,21 +71,6 @@ export const homePage = defineType({
             },
           ],
         },
-        {
-          name: 'image',
-          title: 'Image artisan',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Texte alternatif',
-            },
-          ],
-        },
       ],
     }),
 
@@ -134,6 +119,30 @@ export const homePage = defineType({
       ],
     }),
 
+    // Recent Project Video Section
+    defineField({
+      name: 'recentVideo',
+      title: 'Vidéo Chantier Récent',
+      type: 'object',
+      description: 'Vidéo affichée dans la section Portfolio (avant les photos)',
+      fields: [
+        {
+          name: 'description',
+          title: 'Description de la vidéo',
+          type: 'text',
+          description: 'Texte affiché sous la vidéo',
+        },
+        {
+          name: 'video',
+          title: 'Vidéo du chantier',
+          type: 'file',
+          options: {
+            accept: 'video/*',
+          },
+        },
+      ],
+    }),
+
     // Realisations Preview Section
     defineField({
       name: 'realisationsPreview',
@@ -177,73 +186,6 @@ export const homePage = defineType({
           name: 'ctaText',
           title: 'Texte du bouton CTA',
           type: 'string',
-        },
-      ],
-    }),
-
-    // Recent Project Video Section
-    defineField({
-      name: 'recentVideo',
-      title: 'Vidéo Chantier Récent',
-      type: 'object',
-      fields: [
-        {
-          name: 'sectionLabel',
-          title: 'Label section',
-          type: 'string',
-          initialValue: 'CHANTIER RÉCENT',
-        },
-        {
-          name: 'title',
-          title: 'Titre',
-          type: 'string',
-          initialValue: 'Notre dernier chantier en vidéo',
-        },
-        {
-          name: 'description',
-          title: 'Description',
-          type: 'text',
-        },
-        {
-          name: 'video',
-          title: 'Vidéo du chantier',
-          type: 'file',
-          options: {
-            accept: 'video/*',
-          },
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Description de la vidéo',
-            },
-          ],
-        },
-        {
-          name: 'thumbnail',
-          title: 'Image miniature (optionnel)',
-          type: 'image',
-          description: 'Image affichée avant le chargement de la vidéo',
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Texte alternatif',
-            },
-          ],
-        },
-        {
-          name: 'projectDetails',
-          title: 'Détails du projet',
-          type: 'object',
-          fields: [
-            { name: 'category', type: 'string', title: 'Catégorie' },
-            { name: 'location', type: 'string', title: 'Localisation' },
-            { name: 'duration', type: 'string', title: 'Durée du chantier' },
-          ],
         },
       ],
     }),
@@ -302,6 +244,45 @@ export const homePage = defineType({
               ],
             },
           ],
+        },
+      ],
+    }),
+
+    // Bottom CTA Section
+    defineField({
+      name: 'bottomCta',
+      title: 'Section CTA Finale',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Titre',
+          type: 'string',
+          initialValue: 'Vous avez un projet en tête ?',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          initialValue: 'Contactez-nous pour discuter de votre projet et obtenir un devis gratuit.',
+        },
+        {
+          name: 'phone',
+          title: 'Numéro de téléphone',
+          type: 'string',
+          initialValue: '06 05 50 63 63',
+        },
+        {
+          name: 'ctaText',
+          title: 'Texte du bouton CTA',
+          type: 'string',
+          initialValue: 'Demander un devis gratuit',
+        },
+        {
+          name: 'ctaLink',
+          title: 'Lien du bouton CTA',
+          type: 'string',
+          initialValue: '/contact',
         },
       ],
     }),

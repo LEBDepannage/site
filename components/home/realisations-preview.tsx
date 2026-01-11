@@ -33,8 +33,6 @@ export function RealisationsPreview({ data, videoData }: RealisationsPreviewProp
     ? `https://cdn.sanity.io/files/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${videoData.video.asset._ref.replace('file-', '').replace('-mp4', '.mp4').replace('-mov', '.mov').replace('-webm', '.webm')}`
     : null
 
-  const thumbnailUrl = videoData?.thumbnail ? urlFor(videoData.thumbnail).url() : null
-
   return (
     <section className="py-20 max-lg:landscape:py-12 md:py-28 bg-gradient-to-b from-white to-slate-50">
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
@@ -59,7 +57,6 @@ export function RealisationsPreview({ data, videoData }: RealisationsPreviewProp
                 onPause={handlePause}
                 playsInline
                 preload="metadata"
-                poster={thumbnailUrl || undefined}
                 style={{
                   aspectRatio: '3/4'
                 }}

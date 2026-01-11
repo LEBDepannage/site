@@ -9,7 +9,6 @@ async function getRealisationsPageData(): Promise<RealisationsPageData> {
   return await client.fetch(
     `*[_type == "realisationsPage"][0]{
       hero,
-      categories,
       realisations[]{
         ...,
         image{
