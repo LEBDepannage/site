@@ -13,22 +13,31 @@ import { Send, CheckCircle } from "lucide-react"
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
+  // Helper pour encoder les données pour Netlify
+  const encode = (data: { [key: string]: string }) => {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&")
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Create FormData from the form element
     const formData = new FormData(e.currentTarget)
+    const data: { [key: string]: string } = {}
+
+    formData.forEach((value, key) => {
+      data[key] = value.toString()
+    })
 
     try {
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: encode({ "form-name": "contact", ...data }),
       })
 
       setIsSubmitted(true)
-      // Optional: Reset form or keep success message visible
-      // setTimeout(() => setIsSubmitted(false), 5000)
     } catch (error) {
       console.error("Form submission error:", error)
       alert("Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer.")
