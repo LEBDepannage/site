@@ -208,6 +208,7 @@ export default async function ContactPage() {
                       width={180}
                       height={60}
                       className="w-auto object-contain max-h-16"
+                      unoptimized
                     />
                   </div>
                   <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors h-[100px] w-full md:w-auto md:min-w-[200px]">
@@ -217,6 +218,7 @@ export default async function ContactPage() {
                       width={160}
                       height={60}
                       className="w-auto object-contain max-h-16"
+                      unoptimized
                     />
                   </div>
                   <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors h-[100px] w-full md:w-auto md:min-w-[200px]">
@@ -226,6 +228,7 @@ export default async function ContactPage() {
                       width={300}
                       height={90}
                       className="w-auto object-contain max-h-28"
+                      unoptimized
                     />
                   </div>
                 </div>

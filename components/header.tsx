@@ -61,6 +61,7 @@ export function Header({ data }: HeaderProps) {
               width={80}
               height={80}
               className="h-16 w-auto"
+              unoptimized
             />
           </Link>
 

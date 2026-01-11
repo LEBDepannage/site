@@ -73,6 +73,7 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
                             alt={`Logo ${platform.name}`}
                             fill
                             className="object-contain"
+                            unoptimized={logoSrc.startsWith('/')}
                           />
                         </div>
                       ) : (
@@ -89,10 +90,10 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
                               <Star
                                 key={i}
                                 className={`h-6 w-6 max-lg:landscape:h-4 max-lg:landscape:w-4 ${i < fullStars
-                                    ? "fill-yellow-400 text-yellow-400"
-                                    : i === fullStars && hasHalfStar
-                                      ? "fill-yellow-400/70 text-yellow-400"
-                                      : "text-muted"
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : i === fullStars && hasHalfStar
+                                    ? "fill-yellow-400/70 text-yellow-400"
+                                    : "text-muted"
                                   }`}
                               />
                             ))}
