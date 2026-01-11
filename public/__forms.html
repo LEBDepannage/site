@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form Registration</title>
+</head>
+<body>
+  <!-- 
+    Ce fichier permet à Netlify de détecter le formulaire au moment du build.
+    Il n'est pas visible par les utilisateurs mais sert de référence pour le backend Netlify.
+  -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact" />
+    <input name="bot-field" />
+    <input type="text" name="firstName" />
+    <input type="text" name="lastName" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <select name="service">
+      <option value="">Sélectionnez un service</option>
+      <option value="plomberie">Plomberie</option>
+      <option value="menuiserie">Menuiserie</option>
+      <option value="carrelage">Carrelage</option>
+      <option value="electricite">Électricité</option>
+      <option value="peinture">Peinture</option>
+      <option value="renovation">Rénovation complète</option>
+      <option value="debouchage">Débouchage</option>
+      <option value="autre">Autre</option>
+    </select>
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
