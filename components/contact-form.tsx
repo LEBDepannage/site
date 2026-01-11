@@ -13,10 +13,26 @@ import { Send, CheckCircle } from "lucide-react"
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitted(true)
-    setTimeout(() => setIsSubmitted(false), 5000)
+
+    // Create FormData from the form element
+    const formData = new FormData(e.currentTarget)
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      })
+
+      setIsSubmitted(true)
+      // Optional: Reset form or keep success message visible
+      // setTimeout(() => setIsSubmitted(false), 5000)
+    } catch (error) {
+      console.error("Form submission error:", error)
+      alert("Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer.")
+    }
   }
 
   return (
@@ -37,21 +53,39 @@ export function ContactForm() {
             </div>
             <h3 className="text-2xl font-bold text-foreground mb-3">Demande envoyée !</h3>
             <p className="text-muted-foreground text-lg">Nous vous recontacterons dans les plus brefs délais.</p>
+            <Button
+              variant="outline"
+              className="mt-8"
+              onClick={() => setIsSubmitted(false)}
+            >
+              Envoyer une autre demande
+            </Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5"
+            name="contact"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <div hidden>
+              <input name="bot-field" />
+            </div>
+
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="firstName" className="font-semibold text-foreground">
                   Prénom
                 </Label>
-                <Input id="firstName" placeholder="Votre prénom" required className="h-11" />
+                <Input id="firstName" name="firstName" placeholder="Votre prénom" required className="h-11" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="lastName" className="font-semibold text-foreground">
                   Nom
                 </Label>
-                <Input id="lastName" placeholder="Votre nom" required className="h-11" />
+                <Input id="lastName" name="lastName" placeholder="Votre nom" required className="h-11" />
               </div>
             </div>
 
@@ -59,14 +93,14 @@ export function ContactForm() {
               <Label htmlFor="email" className="font-semibold text-foreground">
                 Email
               </Label>
-              <Input id="email" type="email" placeholder="votre@email.fr" required className="h-11" />
+              <Input id="email" name="email" type="email" placeholder="votre@email.fr" required className="h-11" />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="phone" className="font-semibold text-foreground">
                 Téléphone
               </Label>
-              <Input id="phone" type="tel" placeholder="06 00 00 00 00" required className="h-11" />
+              <Input id="phone" name="phone" type="tel" placeholder="06 00 00 00 00" required className="h-11" />
             </div>
 
             <div className="space-y-2">
@@ -75,6 +109,7 @@ export function ContactForm() {
               </Label>
               <select
                 id="service"
+                name="service"
                 className="w-full h-11 px-3 rounded-md border border-input bg-background text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 font-medium"
                 required
               >
@@ -94,7 +129,7 @@ export function ContactForm() {
               <Label htmlFor="message" className="font-semibold text-foreground">
                 Décrivez votre projet
               </Label>
-              <Textarea id="message" placeholder="Décrivez vos besoins en détail..." rows={5} required className="resize-none" />
+              <Textarea id="message" name="message" placeholder="Décrivez vos besoins en détail..." rows={5} required className="resize-none" />
             </div>
 
             <Button

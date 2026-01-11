@@ -97,11 +97,11 @@ export function RealisationsPreview({ data, videoData }: RealisationsPreviewProp
             >
               <div className="relative aspect-[4/3] max-lg:landscape:aspect-[16/9] overflow-hidden bg-slate-100">
                 <Image
-                  src={realisation.image ? urlFor(realisation.image).width(800).height(600).url() : "/placeholder.svg"}
+                  src={realisation.image ? urlFor(realisation.image).width(800).height(600).auto('format').url() : "/placeholder.svg"}
                   alt={realisation.image?.alt || realisation.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  unoptimized={!!realisation.image}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <span className="absolute top-4 max-lg:landscape:top-2 left-4 max-lg:landscape:left-2 text-xs max-lg:landscape:text-[10px] font-bold bg-primary text-white px-4 max-lg:landscape:px-3 py-2 max-lg:landscape:py-1 rounded-full uppercase tracking-wider shadow-lg">
                   {realisation.category}

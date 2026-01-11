@@ -37,8 +37,9 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
                 : null
 
               // Get image URL - use the URL from expanded asset with hotspot support
-              const imageUrl = realisation.mediaType === 'image' && realisation.image
-                ? urlFor(realisation.image).width(800).height(600).url()
+              // Check if image exists regardless of mediaType to use as poster for video
+              const imageUrl = realisation.image
+                ? urlFor(realisation.image).width(800).height(600).auto('format').url()
                 : null
 
               return (
@@ -55,6 +56,8 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
                         muted
                         loop
                         playsInline
+                        preload="metadata"
+                        poster={imageUrl || undefined}
                       />
                     ) : imageUrl ? (
                       <Image
@@ -62,7 +65,7 @@ export function RealisationsContent({ data }: RealisationsContentProps) {
                         alt={realisation.image?.alt || realisation.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        unoptimized
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-slate-200 text-slate-400">

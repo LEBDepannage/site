@@ -46,67 +46,65 @@ export function TestimonialsPreview({ data }: TestimonialsPreviewProps) {
           </p>
           <div className="grid gap-8 max-lg:landscape:gap-4 md:grid-cols-2">
             {data.platforms.map((platform) => {
-            const fullStars = Math.floor(platform.rating)
-            const hasHalfStar = platform.rating % 1 >= 0.5
+              const fullStars = Math.floor(platform.rating)
+              const hasHalfStar = platform.rating % 1 >= 0.5
 
-            // Logos locaux pour les plateformes connues
-            const localLogos: Record<string, string> = {
-              'Google': '/google-logo.png',
-              'Travaux.com': '/travaux-logo.png',
-            }
+              // Logos locaux pour les plateformes connues
+              const localLogos: Record<string, string> = {
+                'Google': '/google-logo.png',
+                'Travaux.com': '/travaux-logo.png',
+              }
 
-            const logoSrc = localLogos[platform.name] || (platform.logo ? urlFor(platform.logo).url() : '')
+              const logoSrc = localLogos[platform.name] || (platform.logo ? urlFor(platform.logo).auto('format').url() : '')
 
-            // Forcer le lien Google en dur
-            const platformLink = platform.name === 'Google'
-              ? 'https://maps.app.goo.gl/Lhn3xnk7959tPHnaA'
-              : platform.link
+              // Forcer le lien Google en dur
+              const platformLink = platform.name === 'Google'
+                ? 'https://maps.app.goo.gl/Lhn3xnk7959tPHnaA'
+                : platform.link
 
-            return (
-              <a key={platform._key} href={platformLink} target="_blank" rel="noopener noreferrer">
-                <Card className="bg-white border-2 border-border hover:border-primary p-8 max-lg:landscape:p-4 shadow-md hover:shadow-xl transition-all cursor-pointer">
-                  <CardContent className="p-0 flex items-center gap-6 max-lg:landscape:gap-4">
-                    {logoSrc ? (
-                      <div className="w-20 h-20 max-lg:landscape:w-14 max-lg:landscape:h-14 relative shrink-0">
-                        <Image
-                          src={logoSrc}
-                          alt={`Logo ${platform.name}`}
-                          fill
-                          className="object-contain"
-                          unoptimized={!logoSrc.startsWith('/')}
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-20 h-20 max-lg:landscape:w-14 max-lg:landscape:h-14 rounded-full bg-green-500 flex items-center justify-center text-white text-3xl max-lg:landscape:text-2xl font-bold shrink-0">
-                        {platform.name.charAt(0)}
-                      </div>
-                    )}
-                    <div>
-                      <p className="font-bold text-foreground text-xl max-lg:landscape:text-base mb-2 max-lg:landscape:mb-1">{logoSrc ? `Avis ${platform.name}` : platform.name}</p>
-                      <div className="flex items-center gap-3 max-lg:landscape:gap-2 mb-1">
-                        <span className="text-4xl max-lg:landscape:text-2xl font-bold text-foreground">{platform.rating}</span>
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`h-6 w-6 max-lg:landscape:h-4 max-lg:landscape:w-4 ${
-                                i < fullStars
-                                  ? "fill-yellow-400 text-yellow-400"
-                                  : i === fullStars && hasHalfStar
-                                  ? "fill-yellow-400/70 text-yellow-400"
-                                  : "text-muted"
-                              }`}
-                            />
-                          ))}
+              return (
+                <a key={platform._key} href={platformLink} target="_blank" rel="noopener noreferrer">
+                  <Card className="bg-white border-2 border-border hover:border-primary p-8 max-lg:landscape:p-4 shadow-md hover:shadow-xl transition-all cursor-pointer">
+                    <CardContent className="p-0 flex items-center gap-6 max-lg:landscape:gap-4">
+                      {logoSrc ? (
+                        <div className="w-20 h-20 max-lg:landscape:w-14 max-lg:landscape:h-14 relative shrink-0">
+                          <Image
+                            src={logoSrc}
+                            alt={`Logo ${platform.name}`}
+                            fill
+                            className="object-contain"
+                          />
                         </div>
+                      ) : (
+                        <div className="w-20 h-20 max-lg:landscape:w-14 max-lg:landscape:h-14 rounded-full bg-green-500 flex items-center justify-center text-white text-3xl max-lg:landscape:text-2xl font-bold shrink-0">
+                          {platform.name.charAt(0)}
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-bold text-foreground text-xl max-lg:landscape:text-base mb-2 max-lg:landscape:mb-1">{logoSrc ? `Avis ${platform.name}` : platform.name}</p>
+                        <div className="flex items-center gap-3 max-lg:landscape:gap-2 mb-1">
+                          <span className="text-4xl max-lg:landscape:text-2xl font-bold text-foreground">{platform.rating}</span>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-6 w-6 max-lg:landscape:h-4 max-lg:landscape:w-4 ${i < fullStars
+                                    ? "fill-yellow-400 text-yellow-400"
+                                    : i === fullStars && hasHalfStar
+                                      ? "fill-yellow-400/70 text-yellow-400"
+                                      : "text-muted"
+                                  }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-sm max-lg:landscape:text-xs text-muted-foreground font-medium">{platform.reviewCount} avis vérifiés</p>
                       </div>
-                      <p className="text-sm max-lg:landscape:text-xs text-muted-foreground font-medium">{platform.reviewCount} avis vérifiés</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
-            )
-          })}
+                    </CardContent>
+                  </Card>
+                </a>
+              )
+            })}
           </div>
         </div>
       </div>
