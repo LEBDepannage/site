@@ -7,9 +7,10 @@ export const legalPage = defineType({
   fields: [
     defineField({
       name: 'slug',
-      title: 'Slug (URL)',
+      title: 'URL de la page',
       type: 'slug',
-      description: 'URL de la page (ex: mentions-legales, politique-confidentialite)',
+      description: '⚠️ Non modifiable - Défini dans le code',
+      readOnly: true,
       validation: (Rule) => Rule.required(),
     }),
     defineField({
