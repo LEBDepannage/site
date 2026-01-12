@@ -41,7 +41,7 @@ export async function sendEmail(formData: FormData) {
     try {
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_USER, // L'utilisateur veut recevoir le mail
+            to: process.env.EMAIL_TO || process.env.EMAIL_USER, // Le destinataire (peut être différent de l'expéditeur)
             replyTo: email,
             subject: `Nouveau contact LEB Dépannage: ${firstName} ${lastName} - ${service}`,
             text: `
