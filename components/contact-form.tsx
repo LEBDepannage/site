@@ -20,7 +20,9 @@ export function ContactForm() {
     const formData = new FormData(form)
 
     try {
-      await fetch("/", {
+      // Envoi vers /__forms.html pour forcer Netlify à intercepter
+      // au lieu de Next.js qui gérerait "/" en premier
+      await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
