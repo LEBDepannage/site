@@ -71,6 +71,9 @@ export function ContactForm() {
             className="space-y-5"
           >
             <div className="grid gap-5 sm:grid-cols-2">
+              {/* Honeypot field - invisible pour l'utilisateur, visible pour les bots */}
+              <input type="text" name="honeypot" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
               <div className="space-y-2">
                 <Label htmlFor="firstName" className="font-semibold text-foreground">
                   Prénom

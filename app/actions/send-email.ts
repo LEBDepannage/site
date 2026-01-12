@@ -9,6 +9,13 @@ export async function sendEmail(formData: FormData) {
     const phone = formData.get("phone") as string;
     const service = formData.get("service") as string;
     const message = formData.get("message") as string;
+    const honeypot = formData.get("honeypot") as string;
+
+    // Protection anti-bot (Honeypot)
+    // Si ce champ caché est rempli, c'est un bot -> on simule le succès
+    if (honeypot) {
+        return { success: true };
+    }
 
     if (!email || !message) {
         return { success: false, error: "Email et message requis" };
