@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Send, CheckCircle } from "lucide-react"
+import { sendEmail } from "@/app/actions/send-email"
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -22,13 +23,14 @@ export function ContactForm() {
     const formData = new FormData(form)
 
     try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
-      })
+      const result = await sendEmail(formData)
 
-      setIsSubmitted(true)
+      if (result.success) {
+        setIsSubmitted(true)
+        form.reset()
+      } else {
+        alert(result.error || "Une erreur est survenue lors de l'envoi du formulaire.")
+      }
     } catch (error) {
       console.error("Form submission error:", error)
       alert("Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer.")
@@ -67,16 +69,7 @@ export function ContactForm() {
           <form
             onSubmit={handleSubmit}
             className="space-y-5"
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <div hidden>
-              <input name="bot-field" />
-            </div>
-
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="firstName" className="font-semibold text-foreground">

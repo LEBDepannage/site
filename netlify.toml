@@ -9,6 +9,13 @@
   NODE_VERSION = "20"
   NPM_VERSION = "10"
 
+# Redirection pour les soumissions de formulaire
+[[redirects]]
+  from = "/__forms.html"
+  to = "/"
+  status = 200
+  force = false
+
 # Headers de sécurité (déjà configurés dans next.config.mjs mais on les met ici aussi)
 [[headers]]
   for = "/*"
