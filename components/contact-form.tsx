@@ -12,17 +12,17 @@ import { Send, CheckCircle } from "lucide-react"
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
 
     const form = e.currentTarget
     const formData = new FormData(form)
 
     try {
-      // Envoi vers /__forms.html pour forcer Netlify à intercepter
-      // au lieu de Next.js qui gérerait "/" en premier
-      await fetch("/__forms.html", {
+      await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
@@ -32,6 +32,8 @@ export function ContactForm() {
     } catch (error) {
       console.error("Form submission error:", error)
       alert("Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -137,9 +139,10 @@ export function ContactForm() {
               type="submit"
               className="w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 shadow-lg hover:shadow-xl transition-all"
               size="lg"
+              disabled={isLoading}
             >
               <Send className="mr-2 h-5 w-5" />
-              Envoyer ma demande
+              {isLoading ? "Envoi en cours..." : "Envoyer ma demande"}
             </Button>
 
             <p className="text-sm text-center text-muted-foreground pt-2">
