@@ -9,7 +9,7 @@
     Ce fichier permet à Netlify de détecter le formulaire au moment du build.
     Il n'est pas visible par les utilisateurs mais sert de référence pour le backend Netlify.
   -->
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="contact" />
     <input name="bot-field" />
     <input type="text" name="firstName" />

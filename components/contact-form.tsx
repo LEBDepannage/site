@@ -13,28 +13,17 @@ import { Send, CheckCircle } from "lucide-react"
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  // Helper pour encoder les données pour Netlify
-  const encode = (data: { [key: string]: string }) => {
-    return Object.keys(data)
-      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&")
-  }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const formData = new FormData(e.currentTarget)
-    const data: { [key: string]: string } = {}
-
-    formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+    const form = e.currentTarget
+    const formData = new FormData(form)
 
     try {
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...data }),
+        body: new URLSearchParams(formData as any).toString(),
       })
 
       setIsSubmitted(true)
@@ -75,6 +64,9 @@ export function ContactForm() {
             onSubmit={handleSubmit}
             className="space-y-5"
             name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="contact" />
             <div hidden>

@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema"
 import { OrganizationSchema } from "@/components/OrganizationSchema"
 import "./globals.css"
@@ -147,7 +146,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased overflow-x-hidden`}>
         {children}
-        <Analytics />
       </body>
     </html>
   )

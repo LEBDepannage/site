@@ -22,7 +22,7 @@ const nextConfig = {
       },
     ],
   },
-  // Optimisations pour Vercel
+  // Optimisations de performance
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
